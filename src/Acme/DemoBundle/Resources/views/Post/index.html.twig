@@ -509,7 +509,7 @@
         {{#each itemController="post"}}
         <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
             {{#if isEditing}}
-            {{edit-post class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                {{view Ember.TextField valueBinding="title" class="edit" placeholder="title" focus-out="acceptChanges" insert-newline="acceptChanges"}}
             {{else}}
             {{input type="checkbox" checked=isCompleted class="toggle"}}
             <label {{action "editPost" on="doubleClick"}}>{{title}}</label><button {{action "removePost"}} class="destroy"></button>
@@ -525,6 +525,7 @@
 
 
     {% endverbatim %}
+    {#Body : {{view Ember.TextField valueBinding="body" class="edit" placeholder="body" focus-out="acceptChanges" insert-newline="acceptChanges"}}#}
 
 
 
