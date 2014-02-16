@@ -1,44 +1,44 @@
 
-Todos.Router.map(function () {
-    this.resource('todos', { path: '/' }, function () {
+Posts.Router.map(function () {
+    this.resource('posts', { path: '/' }, function () {
         // additional child routes will go here later
         this.route('active');
         this.route('completed');
     });
 });
 
-Todos.TodosRoute = Ember.Route.extend({
+Posts.PostsRoute = Ember.Route.extend({
     model: function() {
-        return this.store.find('todo');
+        return this.store.find('post');
     }
 });
 
 
-Todos.TodosIndexRoute = Ember.Route.extend({
+Posts.PostsIndexRoute = Ember.Route.extend({
     model: function() {
-        return this.modelFor('todos');
+        return this.modelFor('posts');
     }
 });
 
-Todos.TodosActiveRoute = Ember.Route.extend({
+Posts.PostsActiveRoute = Ember.Route.extend({
     model: function(){
-        return this.store.filter('todo', function(todo) {
-            return !todo.get('isCompleted');
+        return this.store.filter('post', function(post) {
+            return !post.get('isCompleted');
         });
     },
     renderTemplate: function(controller) {
-        this.render('todos/index', {controller: controller});
+        this.render('posts/index', {controller: controller});
     }
 });
 
 
-Todos.TodosCompletedRoute = Ember.Route.extend({
+Posts.PostsCompletedRoute = Ember.Route.extend({
     model: function(){
-        return this.store.filter('todo', function(todo) {
-            return todo.get('isCompleted');
+        return this.store.filter('post', function(post) {
+            return post.get('isCompleted');
         });
     },
     renderTemplate: function(controller) {
-        this.render('todos/index', {controller: controller});
+        this.render('posts/index', {controller: controller});
     }
 });

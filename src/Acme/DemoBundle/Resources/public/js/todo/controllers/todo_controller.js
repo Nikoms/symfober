@@ -1,4 +1,4 @@
-Todos.TodoController = Ember.ObjectController.extend({
+Posts.PostController = Ember.ObjectController.extend({
     isCompleted: function(key, value){
         var model = this.get('model');
 
@@ -6,7 +6,6 @@ Todos.TodoController = Ember.ObjectController.extend({
             // property being used as a getter
             return model.get('isCompleted');
         } else {
-            alert(value);
             // property being used as a setter
             model.set('isCompleted', value);
             model.save();
@@ -15,19 +14,19 @@ Todos.TodoController = Ember.ObjectController.extend({
     }.property('model.isCompleted'),
 
     actions: {
-        editTodo: function() {
+        editPost: function() {
             this.set('isEditing', true);
         },
         acceptChanges: function() {
             this.set('isEditing', false);
 
             if (Ember.isEmpty(this.get('model.title'))) {
-                this.send('removeTodo');
+                this.send('removePost');
             } else {
                 this.get('model').save();
             }
         },
-        removeTodo: function(){
+        removePost: function(){
             var todo = this.get('model');
             todo.deleteRecord();
             todo.save();
