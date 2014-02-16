@@ -1,0 +1,4 @@
+post_rest :
+  type: rest
+  resource:     Acme\DemoBundle\Rest\Controller\PostController
+  name_prefix:  api_
