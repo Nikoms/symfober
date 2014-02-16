@@ -41,7 +41,9 @@ class PostController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('AcmeDemoBundle:Post')->findAll();
 
-        return $posts;
+        return array(
+            'entities' => $posts
+        );
     }
 
     /**
@@ -58,7 +60,7 @@ class PostController extends FOSRestController
             throw $this->createNotFoundException();
         }
 
-        return $post;
+        return array('entity' => $post);
     }
 
     /**
