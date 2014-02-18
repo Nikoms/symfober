@@ -26,7 +26,8 @@ class PostType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Acme\DemoBundle\Entity\Post'
+            'data_class' => 'Acme\DemoBundle\Entity\Post',
+            'csrf_protection' => false
         ));
     }
 
@@ -35,6 +36,6 @@ class PostType extends AbstractType
      */
     public function getName()
     {
-        return 'acme_demobundle_post';
+        return 'post';
     }
 }

@@ -3,6 +3,7 @@
 namespace Acme\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -32,11 +33,10 @@ class Post
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="body", type="text")
+     * @Assert\NotBlank()
+     * @ORM\Column(name="body", type="text", nullable=true)
      */
     private $body;
-
 
 
     /**
