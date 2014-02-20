@@ -41,14 +41,17 @@ Posts.PostController = Ember.ObjectController.extend({
         },
         removePost: function(){
             var todo = this.get('model');
+            todo.on("didDelete", this, function() {
+                console.log("record deleted");
+            });
             todo.deleteRecord();
 
             var onSuccess = function(post) {
-                console.log('Tout va bien (removePost) :)');
+                console.log('Tout va bien. (removePost) :)');
                 console.log(post);
             };
 
-            var that = this;
+
             var onFail = function() {
                 console.error('removePost failed');
                 console.log(todo);

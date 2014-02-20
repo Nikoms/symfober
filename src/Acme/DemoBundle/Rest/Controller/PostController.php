@@ -79,14 +79,7 @@ class PostController extends FOSRestController
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
-            return $this->getAction($post->getId());
-//            return $this->redirectView(
-//                $this->generateUrl(
-//                    'api_get_post',
-//                    array('id' => $post->getId())
-//                ),
-//                Codes::HTTP_CREATED
-//            );
+            return array('entity' => $post);
         }
 
         /*{"code":400,"message":"Validation Failed","errors":{"children":{"title":[],"body":{"errors":["This value should not be blank."]}}}}*/

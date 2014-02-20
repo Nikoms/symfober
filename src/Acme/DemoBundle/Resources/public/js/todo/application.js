@@ -5,13 +5,12 @@ Posts.ApplicationAdapter  = DS.RESTAdapter.extend({
     ajaxError: function(jqXHR) {
         var error = this._super(jqXHR);
         console.error('Je suis dans ajaxError!');
-//        if (jqXHR && jqXHR.status === 422) {
-//            var jsonErrors = Ember.$.parseJSON(jqXHR.responseText)["errors"];
-//
-//            return new DS.InvalidError(jsonErrors);
-//        } else {
-//            return error;
-//        }
+        if (jqXHR && jqXHR.status === 422) {
+            var jsonErrors = Ember.$.parseJSON(jqXHR.responseText)["errors"];
+            return new DS.InvalidError(jsonErrors);
+        } else {
+            return error;
+        }
     },
     deleteRecord: function(store, type, record){
         console.log('deleteRecord');
