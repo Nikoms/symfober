@@ -21,9 +21,14 @@ Posts.ApplicationAdapter  = DS.RESTAdapter.extend({
 });
 
 Posts.ApplicationSerializer = DS.RESTSerializer.extend({
-    extractArray: function(store, type, payload, id, requestType) {
-        return this._super(store, type, {posts:payload.entities}, id, requestType);
-    }/*,
+    normalizePayload: function(type, payload) {
+        //Transforme entity (de php) avec le bon type
+        var root = Ember.String.decamelize(type.typeKey);
+        var newPayload = {};
+        newPayload[root] = payload.entity;
+        return newPayload;
+    }
+    /*,
     extractDeleteRecord: function(store, type, payload){
         console.log("extractDeleteRecord après l'appel au delete");
         return this._super(store, type, payload);

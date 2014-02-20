@@ -33,7 +33,7 @@ class Post
 
     /**
      * @var string
-     * @Assert\NotBlank()
+     * _Assert\NotBlank()
      * @ORM\Column(name="body", type="text", nullable=true)
      */
     private $body;

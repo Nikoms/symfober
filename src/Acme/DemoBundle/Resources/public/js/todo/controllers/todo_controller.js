@@ -25,7 +25,7 @@ Posts.PostController = Ember.ObjectController.extend({
                 this.send('removePost');
             } else {
                 var onSuccess = function(post) {
-                    console.log('Tout va bien :)');
+                    console.log('Tout va bien (acceptChanges) :)');
                     console.log(post);
                 };
 
@@ -44,20 +44,21 @@ Posts.PostController = Ember.ObjectController.extend({
             todo.deleteRecord();
 
             var onSuccess = function(post) {
-                console.log('Tout va bien :)');
+                console.log('Tout va bien (removePost) :)');
                 console.log(post);
             };
 
+            var that = this;
             var onFail = function() {
                 console.error('removePost failed');
                 console.log(todo);
                 //MARCHE PAS ? A cause du return?
+//                console.log(todo.get('isDirty'));
 //                todo.rollback();
+//                todo.store.get('transaction').rollback()
 //                todo.transaction.rollback();
-                //Faire une transitionRoute?
-
-
-
+//                this.transitionTo('posts');
+//                that.reload();
             };
             todo.save().then(onSuccess, onFail);
 

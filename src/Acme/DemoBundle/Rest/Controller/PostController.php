@@ -46,7 +46,7 @@ class PostController extends FOSRestController
         $posts = $em->getRepository('AcmeDemoBundle:Post')->findAll();
 
         return array(
-            'entities' => $posts
+            'entity' => $posts
         );
     }
 
@@ -79,14 +79,14 @@ class PostController extends FOSRestController
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
-
-            return $this->redirectView(
-                $this->generateUrl(
-                    'api_get_post',
-                    array('id' => $post->getId())
-                ),
-                Codes::HTTP_CREATED
-            );
+            return $this->getAction($post->getId());
+//            return $this->redirectView(
+//                $this->generateUrl(
+//                    'api_get_post',
+//                    array('id' => $post->getId())
+//                ),
+//                Codes::HTTP_CREATED
+//            );
         }
 
         /*{"code":400,"message":"Validation Failed","errors":{"children":{"title":[],"body":{"errors":["This value should not be blank."]}}}}*/
@@ -133,14 +133,10 @@ class PostController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('AcmeDemoBundle:Post')->findOneById($id);
-        return array('xxxx' => $post);
-        return array('post' => $post);
         //Pas nécessaire, si pas mis, on revient à la page précédente
         if (!is_object($post)) {
             throw $this->createNotFoundException();
         }
-
-        $em = $this->getDoctrine()->getManager();
         $em->remove($post);
         $em->flush();
 
