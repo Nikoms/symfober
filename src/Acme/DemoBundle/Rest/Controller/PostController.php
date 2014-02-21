@@ -33,107 +33,26 @@ use FOS\RestBundle\Controller\Annotations\NamePrefix;
  * Pour ne pas écrire "getPostAction"
  * @RouteResource("Post")
  */
-class PostController extends FOSRestController
+class PostController extends EmberController
 {
 
     /**
-     * Pour ne pas faire de $this->view et return $this->handleView
-     * @View()
+     * @return string
      */
-    public function cgetAction()
+    protected function getRepositoryName()
     {
-        $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('AcmeDemoBundle:Post')->findAll();
-
-        return array(
-            'entity' => $posts
-        );
+        return 'AcmeDemoBundle:Post';
     }
 
-    /**
-     * Pour ne pas faire de $this->view et return $this->handleView
-     * @View()
-     */
-    public function getAction($id)
+    protected function getEntity()
     {
-        $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('AcmeDemoBundle:Post')->findOneById($id);
-        //Pas nécessaire, si pas mis, on revient à la page précédente
-        if (!is_object($post)) {
-            throw $this->createNotFoundException();
-        }
-
-        return array('entity' => $post);
+        return new Post();
     }
 
-    /**
-     * NEW
-     * @View()
-     */
-    public function postAction(Request $request){
-        $post = new Post();
-        $form = $this->createForm(new PostType(), $post);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
-            $em->flush();
-            return array('entity' => $post);
-        }
-
-        /*{"code":400,"message":"Validation Failed","errors":{"children":{"title":[],"body":{"errors":["This value should not be blank."]}}}}*/
-        return array(
-            'form' => $form,
-        );
-    }
-
-    /**
-     * Update
-     * @View()
-     */
-    public function putAction(Request $request, $id)
+    protected function getEntityForm()
     {
-        $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('AcmeDemoBundle:Post')->findOneById($id);
-        //Pas nécessaire, si pas mis, on revient à la page précédente
-        if (!is_object($post)) {
-            throw $this->createNotFoundException();
-        }
-
-        $form = $this->createForm(new PostType(), $post, array('method' => 'PUT')); //Pas oublier le PUT!!
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
-            $em->flush();
-
-            return $this->view(null, Codes::HTTP_NO_CONTENT);
-        }
-
-        return array(
-            'form' => $form
-        );
-
+        return new PostType();
     }
 
-    /**
-     * DELETE
-     * @View()
-     */
-    public function deleteAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $post = $em->getRepository('AcmeDemoBundle:Post')->findOneById($id);
-        //Pas nécessaire, si pas mis, on revient à la page précédente
-        if (!is_object($post)) {
-            throw $this->createNotFoundException();
-        }
-        $em->remove($post);
-        $em->flush();
-
-        return $this->view(null, Codes::HTTP_NO_CONTENT);
-    }
 
 }
