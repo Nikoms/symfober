@@ -13,7 +13,6 @@ Posts.PostsRoute = Ember.Route.extend({
     }
 });
 
-
 Posts.PostsIndexRoute = Ember.Route.extend({
     model: function() {
         return this.modelFor('posts');

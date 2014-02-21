@@ -467,36 +467,14 @@
     <section id="postapp">
         <header id="header">
             <h1>posts</h1>
-            {{input type="text" id="new-post" placeholder="What needs to be done?" value=newTitle action="createPost"}}
+            {{input type="text" id="new-post" placeholder="What needs to be done?" value=newTitle action="create"}}
         </header>
 
         <section id="main">
             {{outlet}}
-        {{input type="checkbox" id="toggle-all" checked=allAreDone}}
         </section>
 
-        <footer id="footer">
-        <span id="post-count">
-          <strong>{{remaining}}</strong> {{inflection}} left
-        </span>
-            <ul id="filters">
-                <li>
-                    {{#link-to "posts.index" activeClass="selected"}}All{{/link-to}}
-                </li>
-                <li>
-                    {{#link-to "posts.active" activeClass="selected"}}Active{{/link-to}}
-                </li>
-                <li>
-                   {{#link-to "posts.completed" activeClass="selected"}}Completed{{/link-to}}
-                </li>
-            </ul>
-
-            {{#if hasCompleted}}
-              <button id="clear-completed" {{action "clearCompleted"}}>
-                Clear completed ({{completed}})
-              </button>
-            {{/if}}
-        </footer>
+        <footer id="footer">Footer :)</footer>
     </section>
 
     <footer id="info">
@@ -507,12 +485,11 @@
 <script type="text/x-handlebars" data-template-name="posts/index">
     <ul id="post-list">
         {{#each itemController="post"}}
-        <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
+        <li {{bind-attr class="isEditing:editing"}}>
             {{#if isEditing}}
-                {{edit-post class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
+                {{edit-post class="edit" value=title focus-out="save" insert-newline="save"}}
             {{else}}
-                    {{input type="checkbox" checked=isCompleted class="toggle"}}
-            <label {{action "editPost" on="doubleClick"}}>{{title}}</label><button {{action "removePost"}} class="destroy"></button>
+                <label {{action "editMode" on="doubleClick"}}>{{title}}</label><button {{action "remove"}} class="destroy"></button>
             {{/if}}
         </li>
         {{/each}}
