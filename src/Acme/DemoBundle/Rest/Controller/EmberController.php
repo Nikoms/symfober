@@ -37,15 +37,7 @@ abstract class EmberController extends FOSRestController{
      */
     private  function getRepository()
     {
-        return $this->getEntityManager()->getRepository($this->getRepositoryName());
-    }
-
-    /**
-     * @return \Doctrine\Common\Persistence\ObjectManager|object
-     */
-    private function getEntityManager()
-    {
-        return $this->getDoctrine()->getManager();
+        return $this->getDoctrine()->getManager()->getRepository($this->getRepositoryName());
     }
 
     /**
@@ -70,7 +62,7 @@ abstract class EmberController extends FOSRestController{
         if (!is_object($entity)) {
             throw $this->createNotFoundException();
         }
-        $em = $this->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->remove($entity);
         $em->flush();
 
@@ -102,7 +94,7 @@ abstract class EmberController extends FOSRestController{
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
             return array('entity' => $entity);
