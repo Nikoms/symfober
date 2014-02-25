@@ -463,11 +463,11 @@
 
     {% verbatim %}
 
-<script type="text/x-handlebars" data-template-name="posts">
+    <script type="text/x-handlebars" data-template-name="posts">
     <section id="postapp">
         <header id="header">
             <h1>posts</h1>
-            {{input type="text" id="new-post" placeholder="What needs to be done?" value=newTitle action="create"}}
+            {{#link-to 'posts.create'}}Add{{/link-to}}
         </header>
 
         <section id="main">
@@ -489,11 +489,38 @@
             {{#if isEditing}}
                 {{edit-post class="edit" value=title focus-out="save" insert-newline="save"}}
             {{else}}
-                <label {{action "editMode" on="doubleClick"}}>{{title}}</label><button {{action "remove"}} class="destroy"></button>
+                <label {{action "dd" on="doubleClick"}}>{{title}}</label><button {{action "remove"}} class="destroy"></button>
             {{/if}}
+            {{#link-to 'post.edit' this}}Edit (link){{/link-to}}
+             <button {{action "edit"}}>Edit (button)</button>
         </li>
         {{/each}}
     </ul>
+</script>
+<script type="text/x-handlebars" data-template-name="posts/create">
+GO CREATE :)
+    <div>
+      <label>Title</label>
+      {{input value=title}}
+
+      <label>Body</label>
+      {{input value=body}}
+
+      <button {{action "save"}}>Créer</button>
+    </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="post/edit">
+    Il est l'heure d'éditer mon ami :)
+    <div>
+      <label>Title</label>
+      {{input value=title}}
+
+      <label>Body</label>
+      {{input value=body}}
+
+      <button {{action "dd" }}>Edit fonctionne pas... Besoin de PostEditController</button>
+    </div>
 </script>
 
     {% endverbatim %}

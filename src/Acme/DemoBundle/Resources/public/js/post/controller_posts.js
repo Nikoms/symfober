@@ -1,5 +1,8 @@
 Posts.PostsController = Ember.ArrayController.extend({
     actions: {
+        dd:function(){
+            alert('PostsController');
+        },
         create: function() {
             // Get the post title set by the "New Post" text field
             var title = this.get('newTitle');
