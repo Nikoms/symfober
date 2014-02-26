@@ -57,6 +57,7 @@ abstract class EmberController extends FOSRestController{
      */
     public function deleteAction($id)
     {
+//        return array('not cool');
         $entity = $this->getRepository()->findOneById($id);
         //Pas nécessaire, si pas mis, on revient à la page précédente
         if (!is_object($entity)) {
