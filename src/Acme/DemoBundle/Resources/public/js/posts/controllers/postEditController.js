@@ -14,6 +14,9 @@ Posts.PostEditController = Ember.ObjectController.extend({
                 }
             );
 
+        },
+        close: function(){
+            this.transitionToRoute('post');
         }
     }
 });

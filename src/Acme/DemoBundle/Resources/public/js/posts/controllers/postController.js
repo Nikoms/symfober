@@ -3,10 +3,12 @@ Posts.PostController = Ember.ObjectController.extend({
         remove: function(){
             var model = this.get('model');
             model.deleteRecord();
+            var controller = this;
             model.save().then(
                 function(model) {
                     console.log('Tout va bien. (removePost) :)');
                     console.log(model);
+                    controller.transitionToRoute('posts');
                 },
                 function() {
                     console.error('removePost failed');
@@ -14,8 +16,6 @@ Posts.PostController = Ember.ObjectController.extend({
                     model.rollback();
                     //Comment le faire reapparaitre dans la liste?
                 });
-
-
         }
     }
 });

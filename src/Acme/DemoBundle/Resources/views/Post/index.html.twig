@@ -26,6 +26,7 @@
                     </li>
                     <li>
                         <a href="{{ path('post_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="#/post/{{ entity.id }}/edit">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -46,30 +47,36 @@
 
     {% verbatim %}
 
-    <script type="text/x-handlebars" data-template-name="posts">
+<script type="text/x-handlebars" id="application">
     <section>
         <header>
             <h1>posts</h1>
         </header>
         <section>
-            {{#link-to 'posts.create'}}Add{{/link-to}}
             <div>{{outlet}}</div>
         </section>
         <footer id="footer">Merci \o/</footer>
     </section>
 </script>
 
-<script type="text/x-handlebars" data-template-name="posts/index">
-    <table>
+<!-- users template -->
+<script type="text/x-handlebars" id="posts">
+    {{#link-to 'posts.create'}}ADD{{/link-to}}
+    <br />
+    <table style="float:left;">
         {{#each itemController="post"}}
         <tr>
             <td>{{title}}</td>
-            <td>{{#link-to 'post.edit' this}}Edit (link){{/link-to}}
+            <td>{{#link-to 'post' this}}view (link){{/link-to}}</td>
             <td><button {{action "remove"}} class="destroy">Delete</button></td>
         </tr>
         {{/each}}
     </table>
+    <div style="float:left;">{{outlet}}</div>
+    <hr style="clear:both"/>
 </script>
+
+
 <script type="text/x-handlebars" data-template-name="posts/create">
 GO CREATE :)
     <div>
@@ -84,6 +91,15 @@ GO CREATE :)
     </div>
 </script>
 
+<script type="text/x-handlebars" data-template-name="post">
+    {{ title }} <br />
+    {{ body }}
+    <hr />
+    {{#link-to 'post.edit' }}Edit (link){{/link-to}}
+    <hr />
+    {{outlet}}
+</script>
+
 <script type="text/x-handlebars" data-template-name="post/edit">
     Il est l'heure d'éditer mon ami :)
     <div>
@@ -94,7 +110,9 @@ GO CREATE :)
       {{textarea value=body}}
 
       <button {{action "save" }}>Edit</button>
+      <button {{action "close" }}>Close</button>
       {{#link-to 'posts'}}Back to list{{/link-to}}
+
     </div>
 </script>
 
