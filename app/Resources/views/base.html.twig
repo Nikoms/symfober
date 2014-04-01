@@ -9,8 +9,79 @@
     <body>
         {% block body %}{% endblock %}
         {% block page_admin %}
-            page_admin block
+
+
+
+            {% verbatim %}
+
+    <section>
+        <header>
+            <h1>pages</h1>
+        </header>
+        <section id="admin">
+
+
+<script type="text/x-handlebars" id="pages">
+                {{#link-to 'pages.create'}}ADD{{/link-to}}
+    <br />
+    <table style="float:left;">
+        {{#each itemController="page"}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{#link-to 'page' this}}view (link){{/link-to}}</td>
+            <td><button {{action "remove"}} class="destroy">Delete</button></td>
+        </tr>
+        {{/each}}
+    </table>
+    <div style="float:left;">{{outlet}}</div>
+    <hr style="clear:both"/>
+</script>
+        </section>
+        <footer id="footer">Merci \o/</footer>
+    </section>
+
+<script type="text/x-handlebars" data-template-name="pages/create">
+    <div>
+        <label>Title</label>
+        {{input value=title}}
+
+        <label>Slug</label>
+        {{input value=slug}}
+
+        <button {{action "save"}}>Créer</button>
+        {{#link-to 'pages'}}Back to list{{/link-to}}
+    </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="page">
+    {{ title }} <br /> {{ body }}
+    <hr />
+    {{#link-to 'page.edit' }}Edit (link){{/link-to}}
+    <hr />
+    {{outlet}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="page/edit">
+    <div>
+        <label>Title</label>
+        {{input value=title}}
+
+        <label>Slug</label>
+        {{input value=slug}}
+
+        <button {{action "save" }}>Edit</button>
+        <button {{action "close" }}>Close</button>
+        {{#link-to 'pages'}}Back to list{{/link-to}}
+
+    </div>
+</script>
+            {% endverbatim %}
+
+
+
+
         {% endblock %}
+
 
         {% block javascripts %}
 
@@ -25,6 +96,10 @@
             '@AcmeDemoBundle/Resources/public/js/posts/controllers/*'
             '@AcmeDemoBundle/Resources/public/js/posts/models/*'
             '@AcmeDemoBundle/Resources/public/js/posts/routes/*'
+            '@AcmeDemoBundle/Resources/public/js/pages/*'
+            '@AcmeDemoBundle/Resources/public/js/pages/controllers/*'
+            '@AcmeDemoBundle/Resources/public/js/pages/models/*'
+            '@AcmeDemoBundle/Resources/public/js/pages/routes/*'
             %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}

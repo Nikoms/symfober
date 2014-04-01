@@ -26,7 +26,8 @@ class PageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Acme\DemoBundle\Entity\Page'
+            'data_class' => 'Acme\DemoBundle\Entity\Page',
+            'csrf_protection' => false
         ));
     }
 
@@ -35,6 +36,6 @@ class PageType extends AbstractType
      */
     public function getName()
     {
-        return 'acme_demobundle_page';
+        return 'page';
     }
 }
