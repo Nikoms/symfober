@@ -12,7 +12,7 @@ _demo:
     prefix:   /demo
 
 
-_post:
+_controllers:
     resource: "@AcmeDemoBundle/Controller/"  #Acme\DemoBundle\Controller\PostController
     type:     annotation
     prefix:   /

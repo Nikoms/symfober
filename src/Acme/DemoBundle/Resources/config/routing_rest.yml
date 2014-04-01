@@ -2,3 +2,8 @@ post_rest :
   type: rest
   resource:     Acme\DemoBundle\Rest\Controller\PostController
   name_prefix:  api_
+
+page_rest :
+  type: rest
+  resource:     Acme\DemoBundle\Rest\Controller\PageController
+  name_prefix:  api_

@@ -9,8 +9,8 @@
 namespace Acme\DemoBundle\Rest\Controller;
 
 
-use Acme\DemoBundle\Entity\Post;
-use Acme\DemoBundle\Form\PostType;
+use Acme\DemoBundle\Entity\Page;
+use Acme\DemoBundle\Form\PageType;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
 
@@ -21,10 +21,10 @@ use FOS\RestBundle\Controller\Annotations\NamePrefix;
 /**
  * NamePrefix("api_")
  * Prefix("/api")
- * Pour ne pas écrire "getPostAction"
- * @RouteResource("Post")
+ * Pour ne pas écrire "getPageAction"
+ * @RouteResource("Page")
  */
-class PostController extends EmberController
+class PageController extends EmberController
 {
 
     /**
@@ -32,17 +32,17 @@ class PostController extends EmberController
      */
     protected function getRepositoryName()
     {
-        return 'AcmeDemoBundle:Post';
+        return 'AcmeDemoBundle:Page';
     }
 
     protected function getEntity()
     {
-        return new Post();
+        return new Page();
     }
 
     protected function getEntityForm()
     {
-        return new PostType();
+        return new PageType();
     }
 
 
