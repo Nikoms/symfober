@@ -1,4 +1,4 @@
-Posts.PostEditController = Ember.ObjectController.extend({
+AppAdmin.PostEditController = Ember.ObjectController.extend({
     actions: {
         save: function(){
             // create a new user and save it

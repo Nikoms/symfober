@@ -1,4 +1,4 @@
-Pages.PagesCreateRoute = Ember.Route.extend({
+AppAdmin.PostsCreateRoute = Ember.Route.extend({
     model: function() {
         return Em.Object.create({});
     }

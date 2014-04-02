@@ -1,4 +1,4 @@
-Pages.PagesCreateController = Ember.ObjectController.extend({
+AppAdmin.PagesCreateController = Ember.ObjectController.extend({
     actions: {
         save:function(){
             var newPage = this.store.createRecord('page', this.get('model'));

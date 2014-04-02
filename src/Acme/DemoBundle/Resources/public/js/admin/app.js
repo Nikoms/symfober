@@ -6,13 +6,18 @@
 //    LOG_VIEW_LOOKUPS: true,
 //    LOG_ACTIVE_GENERATION: true
 //});
-window.Posts = Ember.Application.create({});
+window.AppAdmin = Ember.Application.create({
+    rootElement:'#admin',
+    ready: function () {
+        //alert("Avant qu'on remplisse la liste");
+    }
+});
 
-Posts.ApplicationAdapter  = DS.RESTAdapter.extend({
+AppAdmin.ApplicationAdapter  = DS.RESTAdapter.extend({
     namespace: 'app_dev.php/api' //Comment faire pour garder le app_dev.php si
 });
 
-Posts.ApplicationSerializer = DS.RESTSerializer.extend({
+AppAdmin.ApplicationSerializer = DS.RESTSerializer.extend({
     normalizePayload: function(type, payload) {
         //Si on a pas d'entity, alors on renvoi directement le payload au risque d'avoir une erreur
         if(undefined === payload.entity){
@@ -26,3 +31,12 @@ Posts.ApplicationSerializer = DS.RESTSerializer.extend({
         return newPayload;
     }
 });
+
+//Initialiser avec toute chose (exemple: preloader le store) : http://nerdyworm.com/blog/2013/04/03/ember-initializers/
+//Ember.Application.initializer({
+//    name: 'api-adapter',
+//
+//    initialize: function(container, application) {
+//        alert('ok');
+//    }
+//});

@@ -1,4 +1,4 @@
-Posts.Post = DS.Model.extend({
+AppAdmin.Post = DS.Model.extend({
     title: DS.attr('string'),
     body: DS.attr('string')
 });

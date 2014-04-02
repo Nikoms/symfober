@@ -1,4 +1,4 @@
-Posts.PostsCreateController = Ember.ObjectController.extend({
+AppAdmin.PostsCreateController = Ember.ObjectController.extend({
     actions: {
         save:function(){
             var newPost = this.store.createRecord('post', this.get('model'));

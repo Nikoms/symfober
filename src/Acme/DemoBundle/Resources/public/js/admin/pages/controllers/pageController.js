@@ -1,4 +1,4 @@
-Pages.PageController = Ember.ObjectController.extend({
+AppAdmin.PageController = Ember.ObjectController.extend({
     actions: {
         remove: function(){
             var model = this.get('model');

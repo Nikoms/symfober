@@ -12,14 +12,26 @@
 
 
 
-            {% verbatim %}
 
     <section>
         <header>
-            <h1>pages</h1>
+            <h1>ADMIN</h1>
         </header>
-        <section id="admin">
+        <section id="admin"></section>
+        <footer id="footer">--------</footer>
+    </section>
 
+
+            {% verbatim %}
+
+
+<script type="text/x-handlebars">
+    <ul>
+        <li>{{#link-to 'pages'}}Pages{{/link-to}}</li>
+        <li>{{#link-to 'posts'}}Posts{{/link-to}}</li>
+    </ul>
+    {{outlet}}
+</script>
 
 <script type="text/x-handlebars" id="pages">
                 {{#link-to 'pages.create'}}ADD{{/link-to}}
@@ -36,9 +48,6 @@
     <div style="float:left;">{{outlet}}</div>
     <hr style="clear:both"/>
 </script>
-        </section>
-        <footer id="footer">Merci \o/</footer>
-    </section>
 
 <script type="text/x-handlebars" data-template-name="pages/create">
     <div>
@@ -75,6 +84,63 @@
 
     </div>
 </script>
+
+
+            <script type="text/x-handlebars" id="posts">
+                {{#link-to 'posts.create'}}ADD{{/link-to}}
+    <br />
+    <table style="float:left;">
+        {{#each itemController="post"}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{#link-to 'post' this}}view (link){{/link-to}}</td>
+            <td><button {{action "remove"}} class="destroy">Delete</button></td>
+        </tr>
+        {{/each}}
+    </table>
+    <div style="float:left;">{{outlet}}</div>
+    <hr style="clear:both"/>
+</script>
+
+
+            <script type="text/x-handlebars" data-template-name="posts/create">
+GO CREATE :)
+    <div>
+      <label>Title</label>
+      {{input value=title}}
+
+      <label>Body</label>
+      {{input value=body}}
+
+      <button {{action "save"}}>Créer</button>
+      {{#link-to 'posts'}}Back to list{{/link-to}}
+    </div>
+</script>
+
+            <script type="text/x-handlebars" data-template-name="post">
+                {{ title }} <br />
+    {{ body }}
+    <hr />
+    {{#link-to 'post.edit' }}Edit (link){{/link-to}}
+    <hr />
+    {{outlet}}
+            </script>
+
+            <script type="text/x-handlebars" data-template-name="post/edit">
+    Il est l'heure d'éditer mon ami :)
+    <div>
+      <label>Title</label>
+      {{input value=title}}
+
+      <label>Body</label>
+      {{textarea value=body}}
+
+      <button {{action "save" }}>Edit</button>
+      <button {{action "close" }}>Close</button>
+      {{#link-to 'posts'}}Back to list{{/link-to}}
+
+    </div>
+</script>
             {% endverbatim %}
 
 
@@ -92,14 +158,15 @@
 
 
             {% javascripts
-            '@AcmeDemoBundle/Resources/public/js/posts/*'
-            '@AcmeDemoBundle/Resources/public/js/posts/controllers/*'
-            '@AcmeDemoBundle/Resources/public/js/posts/models/*'
-            '@AcmeDemoBundle/Resources/public/js/posts/routes/*'
-            '@AcmeDemoBundle/Resources/public/js/pages/*'
-            '@AcmeDemoBundle/Resources/public/js/pages/controllers/*'
-            '@AcmeDemoBundle/Resources/public/js/pages/models/*'
-            '@AcmeDemoBundle/Resources/public/js/pages/routes/*'
+            '@AcmeDemoBundle/Resources/public/js/admin/*'
+            '@AcmeDemoBundle/Resources/public/js/admin/pages/*'
+            '@AcmeDemoBundle/Resources/public/js/admin/pages/controllers/*'
+            '@AcmeDemoBundle/Resources/public/js/admin/pages/models/*'
+            '@AcmeDemoBundle/Resources/public/js/admin/pages/routes/*'
+            '@AcmeDemoBundle/Resources/public/js/admin/posts/*'
+            '@AcmeDemoBundle/Resources/public/js/admin/posts/controllers/*'
+            '@AcmeDemoBundle/Resources/public/js/admin/posts/models/*'
+            '@AcmeDemoBundle/Resources/public/js/admin/posts/routes/*'
             %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}

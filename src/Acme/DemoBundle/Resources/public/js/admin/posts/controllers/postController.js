@@ -1,4 +1,4 @@
-Posts.PostController = Ember.ObjectController.extend({
+AppAdmin.PostController = Ember.ObjectController.extend({
     actions: {
         remove: function(){
             var model = this.get('model');
