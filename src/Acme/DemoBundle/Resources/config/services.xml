@@ -10,6 +10,16 @@
             <argument type="service" id="twig.loader" />
         </service>
 
+
+        <service id="acme_demo.route_provider" class="Acme\DemoBundle\Routing\RouteProvider">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="acme_demo.routing_loader" class="Acme\DemoBundle\Routing\ExtraLoader">
+            <tag name="routing.loader" />
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
         <service id="acme.demo.listener" class="Acme\DemoBundle\EventListener\ControllerListener">
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />
             <argument type="service" id="twig.extension.acme.demo" />

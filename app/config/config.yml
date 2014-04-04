@@ -105,3 +105,12 @@ fos_rest:
 sensio_framework_extra:
     view:    { annotations: false } #Vu que view_response_listener = force, on doit mettre false, sinon grosse exception Symfony
     router:  { annotations: true }
+
+#cmf_routing:
+#    dynamic:
+#        enabled: true
+#        route_provider_service_id: acme_demo.route_provider
+#    chain:
+#        routers_by_id:
+#            cmf_routing.dynamic_router: 200
+#            router.default: 100
