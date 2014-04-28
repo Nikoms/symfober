@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: @AcmeDemoBundle/Resources/config/admin.xml }
 
 framework:
     #esi:             ~
@@ -60,6 +61,9 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
+
+
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -114,3 +118,16 @@ sensio_framework_extra:
 #        routers_by_id:
 #            cmf_routing.dynamic_router: 200
 #            router.default: 100
+
+
+# app/config/config.yml
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        # Your other blocks
+
+sonata_admin:
+    title:      Hello world
