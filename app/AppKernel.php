@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\NotificationBundle\SonataNotificationBundle(),
             //...
 
             // If you haven't already, add the storage bundle
@@ -35,8 +36,18 @@ class AppKernel extends Kernel
             // it works the same with the alternatives
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
 
+            new Sonata\PageBundle\SonataPageBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+
             // Then add SonataAdminBundle
             new Sonata\AdminBundle\SonataAdminBundle(),
+
+            //Sonata Admin
+
+            new Sonata\CacheBundle\SonataCacheBundle(),
+            new Sonata\SeoBundle\SonataSeoBundle(),
+            new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

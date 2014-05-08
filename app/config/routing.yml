@@ -17,10 +17,15 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
-AcmeDemoBundle_Extra:
-    resource: .
-    type: extra
+#AcmeDemoBundle_Extra:
+#    resource: .
+#    type: extra
 
+
+_acme_demo_rest :
+  type : rest
+  resource : "@AcmeDemoBundle/Resources/config/routing_rest.yml"
+  prefix : /api
 
 
 admin:
@@ -32,3 +37,10 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
+sonata_page_exceptions:
+    resource: '@SonataPageBundle/Resources/config/routing/exceptions.xml'
+    prefix: /
+
+sonata_page_cache:
+    resource: '@SonataPageBundle/Resources/config/routing/cache.xml'
+    prefix: /

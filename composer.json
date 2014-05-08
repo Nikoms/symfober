@@ -4,29 +4,45 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": { "": "src/" },
+        "psr-4": {"Application\\": "app/Application"}
     },
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.4",
+
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "~1.2",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
+
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
+
         "sensio/distribution-bundle": "~2.3",
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
+
         "incenteev/composer-parameter-handler": "~2.0",
-        "friendsofsymfony/user-bundle": "~2.0@dev",
         "jms/serializer-bundle": "0.13",
+
+        "friendsofsymfony/user-bundle": "~2.0@dev",
         "friendsofsymfony/rest-bundle": "1.1.*",
-        "doctrine/doctrine-fixtures-bundle": "dev-master",
+
         "symfony-cmf/routing": "1.2.*@dev",
         "symfony-cmf/routing-bundle": "1.2.*@dev",
-        "sonata-project/admin-bundle": "dev-master",
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master"
+
+        "sonata-project/core-bundle": "2.2.*@dev",
+        "sonata-project/admin-bundle": "2.3.*@dev",
+        "sonata-project/doctrine-orm-admin-bundle": "2.3.*@dev",
+        "sonata-project/page-bundle": "2.3.*@dev",
+        "sonata-project/seo-bundle": "1.1.*@dev",
+        "sonata-project/cache-bundle": "2.2.*@dev",
+        "sonata-project/notification-bundle": "2.2.*@dev",
+        "sonata-project/datagrid-bundle": "2.2.*@dev",
+        "sonata-project/block-bundle": "2.2.*@dev"
+
     },
     "scripts": {
         "post-install-cmd": [
